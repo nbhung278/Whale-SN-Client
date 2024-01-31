@@ -17,21 +17,23 @@ export default function Page() {
 	// TODO: get user input for room and name
 	const room = "quickstart-room";
 	const name = "quickstart-user";
-	const [token, setToken] = useState("");
+	const [token, setToken] = useState(
+		"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MDY2MDAyMDAsImlzcyI6IkFQSWFXcUZ0ZGlYdHJiTSIsIm5iZiI6MTcwNjU5OTMwMCwic3ViIjoibmJodW5nIiwidmlkZW8iOnsiY2FuUHVibGlzaCI6dHJ1ZSwiY2FuUHVibGlzaERhdGEiOnRydWUsImNhblN1YnNjcmliZSI6dHJ1ZSwicm9vbSI6IjEiLCJyb29tSm9pbiI6dHJ1ZX19.MR8DXbQynXV6rNu7ToUwjyAJe2cEFXIFv6f8chkbIm8"
+	);
 
-	useEffect(() => {
-		(async () => {
-			try {
-				const resp = await fetch(
-					`/api/get-participant-token?room=${room}&username=${name}`
-				);
-				const data = await resp.json();
-				setToken(data.token);
-			} catch (e) {
-				console.error(e);
-			}
-		})();
-	}, []);
+	// useEffect(() => {
+	// 	(async () => {
+	// 		try {
+	// 			const resp = await fetch(
+	// 				`/api/get-participant-token?room=${room}&username=${name}`
+	// 			);
+	// 			const data = await resp.json();
+	// 			setToken(data.token);
+	// 		} catch (e) {
+	// 			console.error(e);
+	// 		}
+	// 	})();
+	// }, []);
 
 	if (token === "") {
 		return <div>Getting token...</div>;

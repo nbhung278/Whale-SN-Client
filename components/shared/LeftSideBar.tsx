@@ -3,11 +3,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import Cookies from "js-cookie";
 
 import { sidebarLinks } from "@/constants";
 
 const LeftSideBar = () => {
 	const router = useRouter();
+	const handleLogout = () => {
+		Cookies.remove("access_token");
+		Cookies.remove("refresh_token");
+		router.push("/sign-in");
+	};
 	const pathname = usePathname();
 
 	return (
@@ -40,7 +46,7 @@ const LeftSideBar = () => {
 			</div>
 
 			<div className="mt-10 px-6">
-				<div className="flex cursor-pointer gap-4 p-4">
+				<div className="flex cursor-pointer gap-4 p-4" onClick={handleLogout}>
 					<Image src="/assets/logout.svg" alt="logout" width={24} height={24} />
 
 					<p className="text-light-2 max-lg:hidden">Logout</p>

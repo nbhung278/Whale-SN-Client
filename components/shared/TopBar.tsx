@@ -1,7 +1,16 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
 
 function TopBar() {
+	const router = useRouter();
+	const handleLogout = () => {
+		Cookies.remove("access_token");
+		Cookies.remove("refresh_token");
+		router.push("/sign-in");
+	};
 	return (
 		<nav className="topbar">
 			<Link href="/" className="flex items-center gap-4">
@@ -11,7 +20,7 @@ function TopBar() {
 
 			<div className="flex items-center gap-1">
 				<div className="block md:hidden">
-					<div className="flex cursor-pointer">
+					<div className="flex cursor-pointer" onClick={handleLogout}>
 						<Image
 							src="/assets/logout.svg"
 							alt="logout"

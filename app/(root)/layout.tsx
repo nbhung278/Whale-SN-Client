@@ -5,6 +5,7 @@ import BottomBar from "@/components/shared/BottomBar";
 import TopBar from "@/components/shared/TopBar";
 import LeftSideBar from "@/components/shared/LeftSideBar";
 import RightSideBar from "@/components/shared/RightSideBar";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,18 +22,25 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<TopBar />
+				<ThemeProvider
+					attribute="class"
+					defaultTheme="system"
+					enableSystem
+					disableTransitionOnChange
+				>
+					<TopBar />
 
-				<main className="flex flex-row">
-					<LeftSideBar />
-					<section className="main-container">
-						<div className="w-full max-w-4xl">{children}</div>
-					</section>
-					{/* @ts-ignore */}
-					<RightSideBar />
-				</main>
+					<main className="flex flex-row">
+						<LeftSideBar />
+						<section className="main-container">
+							<div className="w-full max-w-4xl">{children}</div>
+						</section>
+						{/* @ts-ignore */}
+						<RightSideBar />
+					</main>
 
-				<BottomBar />
+					<BottomBar />
+				</ThemeProvider>
 			</body>
 		</html>
 	);
