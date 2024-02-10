@@ -8,11 +8,32 @@ export const GET_USER: DocumentNode = gql`
 			user {
 				id
 				name
+				firstName
+				lastName
+				bio
+				phoneNumber
+				gender
+				birthDate
 				email
 				address
 			}
-			accessToken
-			refreshToken
+		}
+	}
+`;
+
+export const GET_USER_BY_NAME: DocumentNode = gql`
+	query GetUserByName($name: String!) {
+		getUserByName(getUserByNameDto: { name: $name }) {
+			id
+			name
+			firstName
+			lastName
+			bio
+			phoneNumber
+			gender
+			birthDate
+			email
+			address
 		}
 	}
 `;
